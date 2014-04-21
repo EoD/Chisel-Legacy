@@ -1,7 +1,8 @@
 package info.jbcs.minecraft.chisel.api;
 
-import info.jbcs.minecraft.chisel.CarvableVariation;
+import info.jbcs.minecraft.chisel.carving.CarvableVariation;
 
-public interface Carvable {
-	public CarvableVariation getVariation(int metadata);
+public interface ICarvable
+{
+    public CarvableVariation getVariation(int metadata);
 }

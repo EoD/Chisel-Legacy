@@ -1,32 +1,34 @@
-package info.jbcs.minecraft.chisel;
+package info.jbcs.minecraft.chisel.carving;
 
-import info.jbcs.minecraft.chisel.render.TextureSubmap;
+import info.jbcs.minecraft.chisel.client.render.TextureSubmap;
 import net.minecraft.block.Block;
 import net.minecraft.util.IIcon;
 
-public class CarvableVariation {
-	public String					blockName;
-	public String					description;
-	public int						metadata;
-	public int						kind;
+public class CarvableVariation
+{
+    public String blockName;
+    public String description;
+    public int metadata;
+    public int kind;
 
-	public Block					block;
-	public int						blockMeta;
+    public Block block;
+    public int blockMeta;
 
-	public String					texture;
+    public String texture;
 
-	public IIcon					icon;
-	public IIcon					iconTop;
-	public IIcon					iconBot;
+    public IIcon icon;
+    public IIcon iconTop;
+    public IIcon iconBot;
 
-	public CarvableVariationCTM	ctm;
-	public TextureSubmap			seamsCtmVert;
-	public TextureSubmap			variations9;
+    public CarvableVariationCTM ctm;
+    public TextureSubmap seamsCtmVert;
+    public TextureSubmap variations9;
 
-	public TextureSubmap			submap;
-	public TextureSubmap			submapSmall;
+    public TextureSubmap submap;
+    public TextureSubmap submapSmall;
 
-	static class CarvableVariationCTM {
-		TextureSubmap	seams[]	= new TextureSubmap[3];
-	}
+    static class CarvableVariationCTM
+    {
+        TextureSubmap seams[] = new TextureSubmap[3];
+    }
 }
