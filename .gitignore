@@ -1,3 +1,13 @@
-.gradle
+#eclipse
+.project
+.classpath
+.metadata
+org.*
+bin
+
+#gradle
 build
-mods
+.gradle
+
+#runtime
+run
