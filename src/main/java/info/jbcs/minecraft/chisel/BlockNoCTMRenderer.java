@@ -26,7 +26,7 @@ public class BlockNoCTMRenderer implements ISimpleBlockRenderingHandler {
 	@Override
 	public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
 		int meta=world.getBlockMetadata(x, y, z);
-		
+
 		if(meta!=0) renderer.overrideBlockTexture=block.getIcon(0,meta);
 		renderer.setRenderBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
 		renderer.renderStandardBlock(block, x, y, z);

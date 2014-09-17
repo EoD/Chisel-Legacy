@@ -55,7 +55,7 @@ public class BlockMarble extends Block implements Carvable {
 	public void getSubBlocks(int blockId, CreativeTabs tabs, List list){
 		carverHelper.registerSubBlocks(this,tabs,list);
     }
-	
+
 	@Override
 	public int getRenderType() {
 		return Chisel.RenderCTMId;

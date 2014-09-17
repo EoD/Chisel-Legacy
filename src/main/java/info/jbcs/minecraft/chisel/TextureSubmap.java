@@ -15,13 +15,13 @@ public class TextureSubmap {
 		width=w;
 		height=h;
 		icons=new Icon[width*height];
-		
+
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 
 	@ForgeSubscribe
 	public void TexturesStitched(TextureStitchEvent.Post event){
-		
+
 		for(int x=0;x<width;x++){
 			for(int y=0;y<height;y++){
 				icons[y*width+x]=new TextureVirtual(icon,width,height,x,y);

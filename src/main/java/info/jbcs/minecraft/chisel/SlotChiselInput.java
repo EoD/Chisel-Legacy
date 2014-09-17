@@ -10,24 +10,24 @@ public class SlotChiselInput extends Slot {
 		selInventory = inv;
 		this.container=container;
 	}
-	
+
 	@Override
 	public boolean isItemValid(ItemStack itemstack) {
 		if(container.finished) return false;
-		
+
 		return super.isItemValid(itemstack);
 	}
 
     @Override
 	public boolean canTakeStack(EntityPlayer par1EntityPlayer){
 		if(container.finished) return false;
-		
+
         return super.canTakeStack(par1EntityPlayer);
     }
 
 	@Override public void onSlotChanged() {
 		if(container.finished) return;
-		
+
 		super.onSlotChanged();
 		selInventory.updateItems();
 	}

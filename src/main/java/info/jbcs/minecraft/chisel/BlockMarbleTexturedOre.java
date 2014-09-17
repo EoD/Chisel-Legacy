@@ -14,7 +14,7 @@ public class BlockMarbleTexturedOre extends BlockTexturedOre implements Carvable
 
 	public BlockMarbleTexturedOre(String name,int i, Material mat, String baseIcon) {
 		super(name==null?i:Chisel.config.getBlock(name, i).getInt(i), mat, baseIcon);
-		
+
 		carverHelper = new CarvableHelper();
 
 		setCreativeTab(Chisel.tabChisel);

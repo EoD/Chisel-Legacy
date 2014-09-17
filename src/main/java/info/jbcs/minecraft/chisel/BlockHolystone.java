@@ -11,12 +11,12 @@ import net.minecraft.world.World;
 
 public class BlockHolystone extends BlockMarble{
 	Icon iconStar;
-	
+
 	public BlockHolystone(String name, int i, Material m) {
 		super(name, i, m);
-		
+
 		setLightValue(0.25F);
-		
+
 	}
 
 	@Override
@@ -28,7 +28,7 @@ public class BlockHolystone extends BlockMarble{
 	@Override
 	public void registerIcons(IconRegister register) {
 		super.registerIcons(register);
-		
+
 		iconStar=register.registerIcon("Chisel:holystone/particles/star");
 	}
 

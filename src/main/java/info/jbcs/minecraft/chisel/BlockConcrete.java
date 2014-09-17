@@ -24,7 +24,7 @@ public class BlockConcrete extends BlockMarble {
 			return;
 		if(Chisel.concreteVelocity==0)
 			return;
-		
+
 		GeneralChiselClient.speedupPlayer(world,entity,Chisel.concreteVelocity);
 	}
 

@@ -37,7 +37,7 @@ public class EntitySnakestoneObsidianFX extends EntityFX {
 		case 4: tz=z; break;
 		case 5: tz=z+1; break;
 		}
-		
+
 		double dx=(tx-posX)*3;
 		double dy=(ty-posY)*3;
 		double dz=(tz-posZ)*3;
@@ -46,9 +46,9 @@ public class EntitySnakestoneObsidianFX extends EntityFX {
 		prevPosX=posX;
 		prevPosY=posY;
 		prevPosZ=posZ;
-		
+
 		noClip = true;
-		
+
 		setParticleIcon(block.particles[General.rand.nextInt(block.particles.length)]);
 	}
 
@@ -71,7 +71,7 @@ public class EntitySnakestoneObsidianFX extends EntityFX {
 			setDead();
 			return;
 		}
-		
+
 		double dx = tx - posX;
 		double dy = ty - posY;
 		double dz = tz - posZ;
@@ -82,11 +82,11 @@ public class EntitySnakestoneObsidianFX extends EntityFX {
 			return;
 		}
 		if(distance<0.4){
-			particleAlpha=(float) (distance/0.4);	
+			particleAlpha=(float) (distance/0.4);
 		} else if(particleAge<20){
 			particleAlpha=1.0f*particleAge/20;
 		} else{
-			particleAlpha=1.0f;	
+			particleAlpha=1.0f;
 		}
 
 		if(distance<speed){
@@ -96,7 +96,7 @@ public class EntitySnakestoneObsidianFX extends EntityFX {
 		prevPosX=posX;
 		prevPosY=posY;
 		prevPosZ=posZ;
-		
+
 		double px=posX + dx / distance * speed;
 		double py=posY + dy / distance * speed;
 		double pz=posZ + dz / distance * speed;

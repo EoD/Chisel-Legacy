@@ -13,7 +13,7 @@ public class BlockMarbleWall extends BlockWall {
 
 	public BlockMarbleWall(int id, Block block) {
 		super(id, block);
-		
+
 		carverHelper = new CarvableHelper();
 
 		setCreativeTab(Chisel.tabChisel);

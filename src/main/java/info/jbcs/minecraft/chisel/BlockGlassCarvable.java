@@ -28,7 +28,7 @@ public class BlockGlassCarvable extends BlockGlass implements Carvable {
 	public int getRenderType() {
 		return Chisel.RenderCTMId;
 	}
-	
+
 	@Override
 	public Icon getIcon(int side, int metadata) {
 		return carverHelper.getIcon(side, metadata);
@@ -53,6 +53,6 @@ public class BlockGlassCarvable extends BlockGlass implements Carvable {
 	public CarvableVariation getVariation(int metadata) {
 		return carverHelper.getVariation(metadata);
 	}
-    
+
 
 }

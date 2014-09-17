@@ -46,7 +46,7 @@ public class BlockProxy extends Block {
 
 		setCreativeTab(Chisel.tabChisel);
 		parent=p;
-		
+
         setHardness(parent.blockHardness);
         setResistance(parent.blockResistance);
         setStepSound(parent.stepSound);
@@ -77,8 +77,8 @@ public class BlockProxy extends Block {
 		carverHelper.registerSubBlocks(this,tabs,list);
     }
 
-    
-    
+
+
 	@Override
 	public boolean renderAsNormalBlock() {
 		return parent.renderAsNormalBlock();
@@ -397,5 +397,5 @@ public class BlockProxy extends Block {
 	public float getEnchantPowerBonus(World world, int x, int y, int z) {
 		return parent.getEnchantPowerBonus(world, x, y, z);
 	}
-    
+
 }

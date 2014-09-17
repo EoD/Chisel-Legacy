@@ -10,10 +10,10 @@ import net.minecraft.world.World;
 
 public class BlockSnakestoneObsidian extends BlockSnakestone {
 	Icon[] particles=new Icon[8];
-	
+
 	public BlockSnakestoneObsidian(int id, String iconPrefix) {
 		super(id, iconPrefix);
-		
+
 		flipTopTextures=true;
 
 	}
@@ -26,7 +26,7 @@ public class BlockSnakestoneObsidian extends BlockSnakestone {
 	@Override
 	public void registerIcons(IconRegister register) {
 		super.registerIcons(register);
-		
+
 		for(int i=0;i<particles.length;i++){
 			particles[i]=register.registerIcon(iconPrefix + "particles/"+i);
 		}

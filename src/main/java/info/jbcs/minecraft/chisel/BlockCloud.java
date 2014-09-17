@@ -13,14 +13,14 @@ public class BlockCloud extends BlockMarble {
 
 	public BlockCloud(String name, int i) {
 		super(name, i, Material.ice);
-		
+
 		useNeighborBrightness[blockID]=true;
 	}
 
 	@Override
 	public void onEntityCollidedWithBlock(World world, int i, int j, int k, Entity entity) {
 		entity.fallDistance = 0.0F;
-		
+
 		if (entity.motionY < 0.0D) {
 			entity.motionY *= 0.0050000000000000001D;
 		} else if(entity.motionY>0){

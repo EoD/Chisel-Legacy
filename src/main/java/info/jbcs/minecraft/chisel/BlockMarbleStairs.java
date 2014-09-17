@@ -18,7 +18,7 @@ public class BlockMarbleStairs extends BlockStairs implements Carvable {
 
 	public BlockMarbleStairs(String name,int i, Block block,int meta, CarvableHelper helper) {
 		super(name==null?i:Chisel.config.getBlock(name, i).getInt(i), block, meta);
-		
+
 		useNeighborBrightness[blockID]=true;
 		setCreativeTab(Chisel.tabChisel);
 		carverHelper=helper;
@@ -46,7 +46,7 @@ public class BlockMarbleStairs extends BlockStairs implements Carvable {
 		list.add(new ItemStack(blockID, 1, 0));
 		list.add(new ItemStack(blockID, 1, 8));
     }
-    
+
 	@Override
 	public int getRenderType() {
 		return BlockMarbleStairsRenderer.id;
@@ -78,7 +78,7 @@ public class BlockMarbleStairs extends BlockStairs implements Carvable {
             par1World.setBlockMetadataWithNotify(par2, par3, par4, 0 | i1 + odd, 2);
         }
     }
-    
+
 
     @Override
 	public int onBlockPlaced(World world, int x, int y, int z, int side, float hx, float hy, float hz, int damage){

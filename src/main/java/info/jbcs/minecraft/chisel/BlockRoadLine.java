@@ -11,7 +11,7 @@ public class BlockRoadLine extends Block {
 	Icon aloneIcon;
 	Icon halfLineIcon;
 	Icon fullLineIcon;
-	
+
 	public BlockRoadLine(String name, int i) {
 		super(name == null ? i : Chisel.config.getBlock(name, i).getInt(i), Material.circuits);
 
@@ -57,7 +57,7 @@ public class BlockRoadLine extends Block {
 
 		super.onNeighborBlockChange(par1World, par2, par3, par4, par5);
 	}
-	
+
 	@Override
 	public void registerIcons(IconRegister reg) {
 		blockIcon = aloneIcon = reg.registerIcon("Chisel:line-marking/white-center");

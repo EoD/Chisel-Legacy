@@ -9,17 +9,17 @@ public class TextureVirtual implements Icon {
 	float u0,u1,v0,v1;
 	String name;
 	Icon icon;
-	
+
 	TextureVirtual(Icon parent, int w, int h, int x, int y){
 		icon=parent;
-		
+
 		u0=icon.getInterpolatedU(16.0*(x+0)/w);
 		u1=icon.getInterpolatedU(16.0*(x+1)/w);
 		v0=icon.getInterpolatedV(16.0*(y+0)/h);
 		v1=icon.getInterpolatedV(16.0*(y+1)/h);
-		
+
 		name=icon.getIconName()+"|"+x+"."+y;
-		
+
 		ox=icon.getIconWidth();
 		oy=icon.getIconHeight();
 	}

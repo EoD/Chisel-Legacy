@@ -6,14 +6,14 @@ import net.minecraft.item.ItemStack;
 
 
 public class SlotChiselPlayer extends Slot {
-	
+
 	public SlotChiselPlayer(ContainerChisel container,InventoryPlayer inv,int i,int j,int k) {
 		super(inv, i, j, k);
-		
+
 		this.container=container;
 		selInventory = inv;
 	}
-	
+
 	@Override
 	public boolean isItemValid(ItemStack par1ItemStack) {
 		return false;
@@ -23,7 +23,7 @@ public class SlotChiselPlayer extends Slot {
 	public void onPickupFromSlot(EntityPlayer player,ItemStack itemstack) {
 		container.finished=true;
 	}
-	
+
 	@Override
 	public boolean getHasStack() {
 		return false;

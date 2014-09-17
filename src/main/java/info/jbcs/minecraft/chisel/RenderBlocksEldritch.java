@@ -6,11 +6,11 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.Icon;
 
 public class RenderBlocksEldritch extends RenderBlocks {
-	
+
 	RenderBlocksEldritch(){
-		super();		
+		super();
 	}
-	
+
 	static double displacementMap[]={
 		+0.1165, -0.0352, -0.1208, +0.0906, -0.0295, +0.0302, -0.0973, +0.0548,
 		-0.1077, +0.0662, -0.0932, -0.0925, -0.1161, +0.0073, -0.1084, +0.1136,
@@ -45,14 +45,14 @@ public class RenderBlocksEldritch extends RenderBlocks {
 		+0.0893, -0.1189, -0.1098, -0.0125, +0.1137, -0.0202, +0.0239, -0.0408,
 		+0.0920, +0.0777, -0.0085, -0.0572, -0.0293, -0.0131, +0.0272, +0.0991,
 	};
-	
+
 	static int dmap1=displacementMap.length*1/6;
 	static int dmap2=displacementMap.length*2/6;
 	static int dmap3=displacementMap.length*3/6;
 	static int dmap4=displacementMap.length*4/6;
 	static int dmap5=displacementMap.length*5/6;
 	static int dmap=displacementMap.length;
-	
+
 	Tessellator tessellator;
     double[] X=new double[14];
     double[] Y=new double[14];
@@ -72,7 +72,7 @@ public class RenderBlocksEldritch extends RenderBlocks {
         X[ 0]=x;
         Z[ 0]=z;
         Y[ 0]=y;
-                
+
         X[ 1]=x;
         Z[ 1]=z;
         Y[ 1]=y+1;
@@ -80,15 +80,15 @@ public class RenderBlocksEldritch extends RenderBlocks {
         X[ 2]=x+1;
         Z[ 2]=z;
         Y[ 2]=y+1;
-     
+
         X[ 3]=x+1;
         Z[ 3]=z;
         Y[ 3]=y;
-        
+
         X[ 4]=x;
         Z[ 4]=z+1;
         Y[ 4]=y;
-             
+
         X[ 5]=x;
         Z[ 5]=z+1;
         Y[ 5]=y+1;
@@ -96,7 +96,7 @@ public class RenderBlocksEldritch extends RenderBlocks {
         X[ 6]=x+1;
         Z[ 6]=z+1;
         Y[ 6]=y+1;
-     
+
         X[ 7]=x+1;
         Z[ 7]=z+1;
         Y[ 7]=y;
@@ -104,7 +104,7 @@ public class RenderBlocksEldritch extends RenderBlocks {
         X[ 8]=x+0.5+displacementMap[(index+ 0)%dmap];
         Z[ 8]=z-displacementMap[(index+10)%dmap];
         Y[ 8]=y+0.5+displacementMap[(index+20)%dmap];
-             
+
         X[ 9]=x-displacementMap[(index+0+dmap1)%dmap];
         Z[ 9]=z+0.5+displacementMap[(index+10+dmap1)%dmap];
         Y[ 9]=y+0.5+displacementMap[(index+20+dmap1)%dmap];
@@ -112,77 +112,77 @@ public class RenderBlocksEldritch extends RenderBlocks {
         X[10]=x+0.5+displacementMap[(index+0+dmap2)%dmap];
         Z[10]=z+1+displacementMap[(index+10+dmap2)%dmap];
         Y[10]=y+0.5+displacementMap[(index+20+dmap2)%dmap];
-        
+
         X[11]=x+1+displacementMap[(index+0+dmap3)%dmap];
         Z[11]=z+0.5+displacementMap[(index+10+dmap3)%dmap];
         Y[11]=y+0.5+displacementMap[(index+20+dmap3)%dmap];
-        
+
         X[12]=x+0.5+displacementMap[(index+0+dmap4)%dmap];
         Z[12]=z+0.5+displacementMap[(index+10+dmap4)%dmap];
         Y[12]=y+1;//+displacementMap[(index+20+dmap4)%dmap];
-        
+
         X[13]=x+0.5+displacementMap[(index+0+dmap5)%dmap];
         Z[13]=z+0.5+displacementMap[(index+10+dmap5)%dmap];
         Y[13]=y+0;//+displacementMap[(index+20+dmap5)%dmap];
-        
+
         tessellator = Tessellator.instance;
         tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
 
         return super.renderStandardBlock(block, x, y, z);
     }
-    	
+
     void setupSides(Icon icon,int a,int b,int c,int d,int e, int ta,int tb,int tc,int td){
         L[a]=brightnessBottomLeft;
         L[b]=brightnessBottomRight;
         L[c]=brightnessTopRight;
         L[d]=brightnessTopLeft;
         L[e]=(brightnessBottomLeft+brightnessTopLeft+brightnessTopRight+brightnessBottomRight)/4;
-       
+
         R[a]=colorRedBottomLeft;
         R[b]=colorRedBottomRight;
         R[c]=colorRedTopRight;
         R[d]=colorRedTopLeft;
         R[e]=(colorRedBottomLeft+colorRedTopLeft+colorRedTopRight+colorRedBottomRight)/4;
-       
+
         G[a]=colorGreenBottomLeft;
         G[b]=colorGreenBottomRight;
         G[c]=colorGreenTopRight;
         G[d]=colorGreenTopLeft;
         G[e]=(colorGreenBottomLeft+colorGreenTopLeft+colorGreenTopRight+colorGreenBottomRight)/4;
-        
+
         B[a]=colorBlueBottomLeft;
         B[b]=colorBlueBottomRight;
         B[c]=colorBlueTopRight;
         B[d]=colorBlueTopLeft;
         B[e]=(colorBlueBottomLeft+colorBlueTopLeft+colorBlueTopRight+colorBlueBottomRight)/4;
-    	
+
     	double u0=icon.getMaxU();
     	double u1=icon.getMinU();
     	double v0=icon.getMaxV();
     	double v1=icon.getMinV();
-    	
+
     	U[ta]=u0;
     	U[tb]=u0;
     	U[tc]=u1;
     	U[td]=u1;
     	U[e]=icon.getInterpolatedU(8.0D);
-    	
+
     	V[ta]=v0;
     	V[tb]=v1;
     	V[tc]=v1;
     	V[td]=v0;
     	V[e]=icon.getInterpolatedV(8.0D);
     }
- 
+
     void vert(int index){
     	if(enableAO){
         	tessellator.setColorOpaque_F(R[index], G[index], B[index]);
         	tessellator.setBrightness(L[index]);
         }
-    	
+
         tessellator.addVertexWithUV(X[index], Y[index], Z[index], U[index], V[index]);
     }
-    
+
 	@Override
 	public void renderFaceXNeg(Block block, double x, double y, double z, Icon icon){
         setupSides(icon, 1, 0, 4, 5, 9, 4, 5, 1, 0);
@@ -191,7 +191,7 @@ public class RenderBlocksEldritch extends RenderBlocks {
         vert(4); vert(5); vert(9); vert(9);
         vert(5); vert(1); vert(9); vert(9);
     }
-	
+
 	@Override
 	public void renderFaceXPos(Block block, double x, double y, double z, Icon icon){
         setupSides(icon, 3, 2, 6, 7, 11, 3, 2, 6, 7);
@@ -210,7 +210,7 @@ public class RenderBlocksEldritch extends RenderBlocks {
         vert(2); vert(3); vert(8); vert(8);
         vert(3); vert(0); vert(8); vert(8);
     }
-	
+
 
 	@Override
 	public void renderFaceZPos(Block block, double x, double y, double z, Icon icon){
@@ -220,7 +220,7 @@ public class RenderBlocksEldritch extends RenderBlocks {
         vert(7); vert(6); vert(10); vert(10);
         vert(4); vert(7); vert(10); vert(10);
 	}
-	
+
 
 
 	@Override
@@ -231,15 +231,15 @@ public class RenderBlocksEldritch extends RenderBlocks {
         vert(7); vert(4); vert(13); vert(13);
         vert(4); vert(0); vert(13); vert(13);
     }
-	
+
 	@Override
 	public void renderFaceYPos(Block block, double x, double y, double z, Icon icon){
         setupSides(icon,2,1,5,6,12,2,1,5,6);
-        
+
         vert(2); vert(1); vert(12); vert(12);
         vert(1); vert(5); vert(12); vert(12);
         vert(5); vert(6); vert(12); vert(12);
         vert(6); vert(2); vert(12); vert(12);
     }
-	
+
 }

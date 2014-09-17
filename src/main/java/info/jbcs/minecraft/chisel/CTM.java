@@ -72,17 +72,17 @@ public class CTM {
 
     public static int[] getSubmapIndices(IBlockAccess world, int x, int y, int z, int side){
     	int index=getTexture(world,x,y,z,side);
-    	
+
     	return submaps[index];
     }
 
 	public static int getTexture(IBlockAccess world, int x, int y, int z, int side) {
 		if(world==null) return 0;
-		
+
 		int texture = 0;
 		int blockId=world.getBlockId(x, y, z);
 		int blockMetadata=world.getBlockMetadata(x, y, z);
-		
+
 		boolean b[] = new boolean[6];
 		if (side <= 1) {
 			b[0] = isConnected(world, x - 1, y, z, side, blockId, blockMetadata);
@@ -168,7 +168,7 @@ public class CTM {
 			b2[2] = !isConnected(world, x, y + 1, z - 1, side, blockId, blockMetadata);
 			b2[3] = !isConnected(world, x, y + 1, z + 1, side, blockId, blockMetadata);
 		}
-		
+
 		if (texture == 17 && b2[0])
 			texture = 4;
 		if (texture == 19 && b2[1])
@@ -205,7 +205,7 @@ public class CTM {
 		if (texture == 50 && !b2[3] && b2[2])
 			texture = 54;
 
-		
+
 		if (texture == 34 && b2[0] && b2[1] && b2[2] && b2[3])
 			texture = 58;
 
@@ -245,7 +245,7 @@ public class CTM {
 
 	private static boolean isConnected(IBlockAccess world, int x, int y, int z, int side,int id, int meta) {
 		int x2=x,y2=y,z2=z;
-		
+
 		switch(side){
 		case 0: y2--; break;
 		case 1: y2++; break;
@@ -254,13 +254,13 @@ public class CTM {
 		case 4: x2--; break;
 		case 5: x2++; break;
 		}
-		
-		return 
+
+		return
 				world.getBlockId(x, y, z) == id &&
 				world.getBlockMetadata(x, y, z) == meta &&
 				(world.getBlockId(x2, y2, z2) != id || world.getBlockMetadata(x2, y2, z2) != meta)
 		;
 	}
-		
+
 
 }

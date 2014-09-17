@@ -40,7 +40,7 @@ public class ContainerChisel extends Container {
 				addSlotToContainer(new SlotChiselSelection(this,inventory, inventory, 16 + x + y * 2, leftOffsets[4 + x], topOffsets[3-y]));
 			}
 		}
-		
+
 		addSlotToContainer(new SlotChiselInput(this,inventory, InventoryChiselSelection.normalSlots, 80, 35));
 
 		for (int k = 0; k < 3; k++) {
@@ -55,24 +55,24 @@ public class ContainerChisel extends Container {
 					new Slot(inventoryplayer, l, 8 + l * 18, 160 - 18)
 			);
 		}
-		
+
 		chisel=inventoryplayer.getCurrentItem();
 		if(chisel.stackTagCompound!=null){
 			ItemStack stack=ItemStack.loadItemStackFromNBT(chisel.stackTagCompound.getCompoundTag("chiselTarget"));
 			inventory.setInventorySlotContents(InventoryChiselSelection.normalSlots, stack);
 		}
-		
+
 		Item item=General.getItem(chisel);
 		carving=item instanceof ItemChisel?((ItemChisel)item).carving:Carving.chisel;
-		
+
 		inventory.updateItems();
 	}
-	
+
     @Override
 	public ItemStack slotClick(int par1, int par2, int par3, EntityPlayer par4EntityPlayer){
     	if(par3==2 && par2==currentIndex)
     		return null;
-    	
+
     	return super.slotClick(par1, par2, par3, par4EntityPlayer);
     }
 
@@ -95,16 +95,16 @@ public class ContainerChisel extends Container {
 	public void onChiselSlotChanged() {
 		ItemStack stack=playerInventory.mainInventory[currentIndex];
 		if(!stack.isItemEqual(chisel)) finished=true;
-		
+
 		if(finished) return;
-		
+
 		if(chisel.stackTagCompound==null)
 			chisel.stackTagCompound=new NBTTagCompound();
-			
+
 		NBTTagCompound tag=new NBTTagCompound();
 		if(inventory.getStackInSpecialSlot()!=null)
 			inventory.getStackInSpecialSlot().writeToNBT(tag);
-			
+
 		chisel.stackTagCompound.setCompoundTag("chiselTarget", tag);
 		playerInventory.mainInventory[currentIndex]=chisel;
 	}

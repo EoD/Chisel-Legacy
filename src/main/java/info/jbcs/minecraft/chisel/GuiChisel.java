@@ -11,12 +11,12 @@ import org.lwjgl.opengl.GL11;
 public class GuiChisel extends GuiContainer {
 	EntityPlayer player;
 	ContainerChisel container;
-	
+
 	public GuiChisel(InventoryPlayer iinventory, InventoryChiselSelection menu) {
 		super(new ContainerChisel(iinventory, menu));
 		player = iinventory.player;
 		height = 177;
-		
+
 		container=(ContainerChisel) inventorySlots;
 	}
 
@@ -29,24 +29,24 @@ public class GuiChisel extends GuiContainer {
 	boolean isExtended(){
 		return container.inventory.activeVariations>16;
 	}
-	
+
 	@Override
 	protected boolean isPointInRegion(int x, int y, int w, int h, int px, int py) {
 		px -= this.guiLeft;
 		py -= this.guiTop;
-		
+
 		if(! isExtended() && y>=7 && y<=62){
 			if(px >= 43 && px <= 60) return false;
 			if(px >= 115 && px <= 132) return false;
 		}
-		
+
 		return px >= x - 1 && px < x + w + 1 && py >= y - 1 && py < y + h + 1;
 	}
-	
+
 	@Override
 	protected void drawGuiContainerForegroundLayer(int j, int i) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		
+
 		String line=isExtended()?"Carve":"Carve blocks";
 //		this.drawCenteredString(fontRenderer, isExtended()?"Carve":"Carve blocks",  88, 13, 0x888888);
 		fontRenderer.drawString(line, 88-fontRenderer.getStringWidth(line) / 2, 13, 0x404040);
@@ -59,7 +59,7 @@ public class GuiChisel extends GuiContainer {
 
 		int i = width - xSize >> 1;
 		int j = height - ySize >> 1;
-		
+
 		String texture=isExtended()?
 			"chisel:textures/chisel-gui-24.png":
 			"chisel:textures/chisel-gui.png";

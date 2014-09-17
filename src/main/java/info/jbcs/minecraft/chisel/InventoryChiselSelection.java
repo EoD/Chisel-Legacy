@@ -15,7 +15,7 @@ public class InventoryChiselSelection extends InventoryStatic {
 	final static int normalSlots=32;
 	int activeVariations=0;
 	ContainerChisel container;
-	
+
 	public InventoryChiselSelection(ItemStack c) {
 		super(normalSlots+1);
 
@@ -56,21 +56,21 @@ public class InventoryChiselSelection extends InventoryStatic {
 			container.onChiselSlotChanged();
 			return;
 		}
-		
+
 		if(chiseledItem.itemID>=Block.blocksList.length)
 			return;
 
 		Item item=General.getItem(chiseledItem);
 		if(item == null) return;
-		
+
 		ArrayList<ItemStack> list=container.carving.getItems(chiseledItem);
-		
+
 		activeVariations=0;
 		while(activeVariations<normalSlots && activeVariations<list.size()){
 			items[activeVariations]=list.get(activeVariations);
 			activeVariations++;
 		}
-				
+
 		container.onChiselSlotChanged();
 	}
 
@@ -97,7 +97,7 @@ public class InventoryChiselSelection extends InventoryStatic {
 		if(stack!=null && (Item.itemsList[stack.itemID] instanceof ItemChisel)){
 			return false;
 		}
-		
+
 		return i==normalSlots;
 	}
 }

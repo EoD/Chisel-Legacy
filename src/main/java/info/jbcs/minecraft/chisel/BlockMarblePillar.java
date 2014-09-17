@@ -6,11 +6,11 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockMarblePillar extends BlockMarble{
 	Icon sides[]=new Icon[6];
-	
+
 	public BlockMarblePillar(String name, int i, Material m) {
 		super(name,i,m);
 	}
-	
+
 	public BlockMarblePillar(int i, Material m) {
 		super(i,m);
 	}
@@ -19,7 +19,7 @@ public class BlockMarblePillar extends BlockMarble{
 	public int getRenderType() {
 		return BlockMarblePillarRenderer.id;
 	}
-	
+
 	@Override
 	public Icon getIcon(int side, int metadata) {
 		return sides[side];
@@ -32,10 +32,10 @@ public class BlockMarblePillar extends BlockMarble{
 
 	public Icon getCtmIcon(int index, int metadata){
 		CarvableVariation var=carverHelper.variations.get(metadata);
-		
+
 		if(index>=4) return var.iconTop;
 		if(var.seamsCtmVert==null) return var.icon;
     	return var.seamsCtmVert.icons[index];
     }
-   
+
 }

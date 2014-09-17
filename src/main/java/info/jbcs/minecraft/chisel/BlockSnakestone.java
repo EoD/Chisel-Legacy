@@ -17,14 +17,14 @@ public class BlockSnakestone extends Block {
 	static final int SEC_DOWN = 4;
 	static final int SEC_UP = 8;
 	static final int SEC_HOR = 12;
-	
+
 	static final int SIDE_B = 0;
 	static final int SIDE_T = 1;
 	static final int SIDE_N = 2;
 	static final int SIDE_S = 3;
 	static final int SIDE_W = 4;
 	static final int SIDE_E = 5;
-	
+
 	String iconPrefix;
 	Icon iconFaceLeft;
 	Icon iconFaceRight;
@@ -43,7 +43,7 @@ public class BlockSnakestone extends Block {
 	Icon iconSide;
 	Icon iconRightTip;
 	Icon iconTop;
-	
+
 	public boolean	flipTopTextures;
 
 	public BlockSnakestone(int id, String iconPrefix) {
@@ -63,32 +63,32 @@ public class BlockSnakestone extends Block {
 	}
 
 	static final int[] rotRemap={0, 3, 1, 2};
-	
+
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
 		int meta = world.getBlockMetadata(x, y, z);
 		if (meta > 3) return;
-		
+
 		if(rotateHead(world, x, y, z)!=-1)
 			return;
-			
+
 		int rot = rotRemap[(MathHelper.floor_double(entity.rotationYaw * 4.0 / 360.0 + 0.5) ) & 3];
-		
+
 		 world.setBlockMetadataWithNotify(x, y, z, rot, 3);
 	}
-	
+
 	@Override
 	public int onBlockPlaced(World world, int x, int y, int z, int side, float hx, float hy, float hz, int meta) {
 		if (meta <= 3) return meta;
-		
+
 		if(rotateBodyPart(world,x,y,z)){
 			return world.getBlockMetadata(x,y,z);
 		}
-		
+
 		if(side==0 || side==1) meta=14;
 		if(side==2 || side==3) meta=13;
 		if(side==4 || side==5) meta=12;
-		
+
 		world.setBlockMetadataWithNotify(x, y, z, meta, 2);
 
 		return meta;
@@ -104,11 +104,11 @@ public class BlockSnakestone extends Block {
 			rotateBodyPart(world, x, y, z);
 		}
 	}
-	
+
 	public int[] getConnections(World world, int ox, int oy, int oz) {
 		int index=0;
 		int[] res={-1,-1,-1,-1,-1,-1,-1};
-		
+
 		for (int direction = 0; direction < 6; direction++) {
 			int x=ox, y=oy, z=oz;
 			switch (direction) {
@@ -126,11 +126,11 @@ public class BlockSnakestone extends Block {
 			int px1=x,px2=x;
 			int py1=y,py2=y;
 			int pz1=z,pz2=z;
-			
+
 			int meta=world.getBlockMetadata(x,y,z);
 			if((meta&0xc) == 4 || (meta&0xc) == 8){
 				if((meta&4) == 4) py1--; else py1++;
-				
+
 				switch (meta&3) {
 				case 0: pz2--; break;
 				case 1: pz2++; break;
@@ -148,29 +148,29 @@ public class BlockSnakestone extends Block {
 			} else if(meta<4){
 				match=true;
 			}
-			
+
 			if(! match){
 				int id1=world.getBlockId(px1, py1, pz1);
 				int id2=world.getBlockId(px2, py2, pz2);
-			
-			
+
+
 				if(id1!=blockID || id2!=blockID)
 					match=true;
-				
+
 				if(ox==px1 && oy==py1 && oz==pz1)
 					match=true;
-				
+
 				if(ox==px2 && oy==py2 && oz==pz2)
 					match=true;
 			}
-			
+
 			if(match)
 				res[index++]=direction;
 		}
-		
+
 		if(index!=5)
 			res[index]=-1;
-		
+
 		return res;
 	}
 
@@ -182,9 +182,9 @@ public class BlockSnakestone extends Block {
 
 		if(con[1]==-1) return false;
 		if(con[2]!=-1) return false;
-		
+
 		int meta=15;
-		
+
 		if(con[0]==2 && con[1]==3){
 			meta=12;
 		} else if(con[0]==0 && con[1]==1){
@@ -196,10 +196,10 @@ public class BlockSnakestone extends Block {
 		} else if(con[1]==5){
 			meta=SEC_UP|con[0];
 		}
-		
+
 		if(blockMeta!=meta)
 			world.setBlockMetadataWithNotify(x, y, z, meta, 3);
-		
+
 		return true;
 	}
 
@@ -207,7 +207,7 @@ public class BlockSnakestone extends Block {
 		int[] con=getConnections(world,x,y,z);
 
 		if (con[1]>=0 && con[1]<4) return -1;
-		
+
 		int meta=-1;
 		switch (con[0]) {
 		case 0: meta=1; break;
@@ -215,9 +215,9 @@ public class BlockSnakestone extends Block {
 		case 2: meta=3; break;
 		case 3: meta=2; break;
 		}
-		
+
 		if(meta==-1) return -1;
-			
+
 		world.setBlock(x, y, z, blockID, meta, 3);
 		return meta;
 	}
@@ -241,14 +241,14 @@ public class BlockSnakestone extends Block {
 		int orient = meta & 0x3;
 
 		switch(meta | (side<<4)){
-		
+
 		case(SEC_HOR | 0 | (SIDE_B<<4)): return iconBottomTip;
 		case(SEC_HOR | 0 | (SIDE_T<<4)): return iconTopSide;
 		case(SEC_HOR | 0 | (SIDE_N<<4)): return iconSide;
 		case(SEC_HOR | 0 | (SIDE_S<<4)): return iconSide;
 		case(SEC_HOR | 0 | (SIDE_W<<4)): return iconCross;
 		case(SEC_HOR | 0 | (SIDE_E<<4)): return iconCross;
-		
+
 		case(SEC_HOR | 1 | (SIDE_B<<4)): return iconBottomTip;
 		case(SEC_HOR | 1 | (SIDE_T<<4)): return iconTopSide;
 		case(SEC_HOR | 1 | (SIDE_N<<4)): return iconCross;
@@ -269,14 +269,14 @@ public class BlockSnakestone extends Block {
 		case(SEC_HOR | 3 | (SIDE_S<<4)): return iconSide;
 		case(SEC_HOR | 3 | (SIDE_W<<4)): return iconSide;
 		case(SEC_HOR | 3 | (SIDE_E<<4)): return iconSide;
-		
+
 		case(SEC_DOWN | 0 | (SIDE_B<<4)): return iconCross;
 		case(SEC_DOWN | 0 | (SIDE_T<<4)): return iconTopTip;
 		case(SEC_DOWN | 0 | (SIDE_N<<4)): return iconCross;
 		case(SEC_DOWN | 0 | (SIDE_S<<4)): return iconRightTip;
 		case(SEC_DOWN | 0 | (SIDE_W<<4)): return iconLeftDown;
 		case(SEC_DOWN | 0 | (SIDE_E<<4)): return iconRightDown;
-		
+
 		case(SEC_DOWN | 1 | (SIDE_B<<4)): return iconCross;
 		case(SEC_DOWN | 1 | (SIDE_T<<4)): return iconTopTip;
 		case(SEC_DOWN | 1 | (SIDE_N<<4)): return iconLeftTip;
@@ -304,7 +304,7 @@ public class BlockSnakestone extends Block {
 		case(SEC_UP | 0 | (SIDE_S<<4)): return iconLeftTip;
 		case(SEC_UP | 0 | (SIDE_W<<4)): return iconLeftUp;
 		case(SEC_UP | 0 | (SIDE_E<<4)): return iconRightUp;
-		
+
 		case(SEC_UP | 1 | (SIDE_B<<4)): return iconBottomSide;
 		case(SEC_UP | 1 | (SIDE_T<<4)): return iconCross;
 		case(SEC_UP | 1 | (SIDE_N<<4)): return iconRightTip;
@@ -332,7 +332,7 @@ public class BlockSnakestone extends Block {
 		case(SEC_HEAD | 0 | (SIDE_S<<4)): return iconCross;
 		case(SEC_HEAD | 0 | (SIDE_W<<4)): return iconFaceLeft;
 		case(SEC_HEAD | 0 | (SIDE_E<<4)): return iconFaceRight;
-		
+
 		case(SEC_HEAD | 1 | (SIDE_B<<4)): return iconBottomSide;
 		case(SEC_HEAD | 1 | (SIDE_T<<4)): return iconTopTip;
 		case(SEC_HEAD | 1 | (SIDE_N<<4)): return iconCross;
@@ -353,7 +353,7 @@ public class BlockSnakestone extends Block {
 		case(SEC_HEAD | 3 | (SIDE_S<<4)): return iconFaceRight;
 		case(SEC_HEAD | 3 | (SIDE_W<<4)): return iconCross;
 		case(SEC_HEAD | 3 | (SIDE_E<<4)): return iconFace;
-		
+
 		}
 
 		return iconCross;
@@ -379,7 +379,7 @@ public class BlockSnakestone extends Block {
 		iconFaceLeft = register.registerIcon(iconPrefix + "face-left");
 		iconFaceRight = register.registerIcon(iconPrefix + "face-right");
 		iconFace = register.registerIcon(iconPrefix + "face");
-		
+
 		iconLeftUp = register.registerIcon(iconPrefix + "left-up");
 		iconLeftDown = register.registerIcon(iconPrefix + "left-down");
 		iconLeftTip = register.registerIcon(iconPrefix + "left-tip");
@@ -391,11 +391,11 @@ public class BlockSnakestone extends Block {
 		iconTop = register.registerIcon(iconPrefix + "top");
 		iconTopTip = register.registerIcon(iconPrefix + "top-tip");
 		iconTopSide = register.registerIcon(iconPrefix + "top-side");
-		
+
 		iconBottom = register.registerIcon(iconPrefix + "bot");
 		iconBottomTip = register.registerIcon(iconPrefix + "bot-tip");
 		iconBottomSide = register.registerIcon(iconPrefix + "bot-side");
-		
+
 		iconCross = register.registerIcon(iconPrefix + "crosssection");
 		iconSide = register.registerIcon(iconPrefix + "side");
 	}

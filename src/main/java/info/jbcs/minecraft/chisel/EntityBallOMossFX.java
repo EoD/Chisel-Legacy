@@ -15,7 +15,7 @@ public class EntityBallOMossFX extends EntityFX{
 	BlockSnakestoneObsidian	block;
 	double					tx, ty, tz;
 	double					speed;
-	
+
 	float u0,u1,v0,v1;
 	Icon icon;
 	Icon iconPlus=new Icon(){
@@ -73,7 +73,7 @@ public class EntityBallOMossFX extends EntityFX{
 		public String getIconName() {
 			return "";
 		}
-	
+
 	};
 
 	public EntityBallOMossFX(World world, double x, double y, double z) {
@@ -90,9 +90,9 @@ public class EntityBallOMossFX extends EntityFX{
 		motionY=(General.rand.nextDouble()*0.5)*0.7;
 		motionZ=(General.rand.nextDouble()-0.5)*0.7;
 		particleGravity=2.0f;
-		
+
 //		setParticleIcon(block.particles[General.rand.nextInt(block.particles.length)]);
-		
+
 		icon=Chisel.itemBallOMoss.getIconFromDamage(0);
 		float width=4.0f+General.rand.nextFloat()*8.0f;
 		float uu=General.rand.nextFloat()*(16.0f-width);
@@ -101,7 +101,7 @@ public class EntityBallOMossFX extends EntityFX{
 		u1=icon.getInterpolatedU(uu+width);
 		v0=icon.getInterpolatedV(vv);
 		v1=icon.getInterpolatedV(vv+width);
-		
+
 		setParticleIcon(iconPlus);
 	}
 
@@ -123,11 +123,11 @@ public class EntityBallOMossFX extends EntityFX{
 		super.onUpdate();
 
 		double remaining=particleMaxAge-particleAge;
-		
+
 		if(remaining<5){
-			particleAlpha=(float) (remaining/5.0);	
+			particleAlpha=(float) (remaining/5.0);
 		} else{
-			particleAlpha=1.0f;	
+			particleAlpha=1.0f;
 		}
 	}
 

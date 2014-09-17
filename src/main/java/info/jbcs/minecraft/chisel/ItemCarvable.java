@@ -30,7 +30,7 @@ public class ItemCarvable extends ItemBlock {
 	public String getUnlocalizedName(ItemStack itemstack) {
 		return "item." + Block.blocksList[blockId].getUnlocalizedName() + "." + itemstack.getItemDamage();
 	}
-	
+
     @Override
 	public Icon getIconFromDamage(int damage) {
         return Block.blocksList[blockId].getIcon(2,damage);
@@ -39,17 +39,17 @@ public class ItemCarvable extends ItemBlock {
     @Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List lines, boolean advancedTooltips) {
     	if(! Chisel.blockDescriptions) return;
-    	
+
     	Item item=General.getItem(stack);
     	if(item==null) return;
-    	
+
     	Block block=General.getBlock(item.itemID);
     	if(! (block instanceof Carvable)) return;
-    	
+
     	Carvable carvable=(Carvable) block;
     	CarvableVariation var=carvable.getVariation(stack.getItemDamage());
     	if(var==null) return;
-    	
+
     	lines.add(var.description);
     }
 

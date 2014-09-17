@@ -13,7 +13,7 @@ public class BlockMarblePane extends BlockPane implements Carvable {
 
 	protected BlockMarblePane(int id, Material material, boolean drops) {
 		super(id, "", "", material, drops);
-		
+
 		carverHelper = new CarvableHelper();
 
 		setCreativeTab(Chisel.tabChisel);

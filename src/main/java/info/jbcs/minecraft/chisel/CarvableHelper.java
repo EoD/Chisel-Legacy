@@ -31,7 +31,7 @@ public class CarvableHelper {
 	static final int				V9				= 6;
 	static final int				V4				= 7;
 	static final int				CTMX			= 8;
-	
+
 
 	CarvableHelper() {
 	}
@@ -59,7 +59,7 @@ public class CarvableHelper {
 
 		if(blockName==null && block!=null) blockName=block.getLocalizedName();
 		else if(blockName==null && description!=null) blockName=description;
-		
+
 		CarvableVariation variation = new CarvableVariation();
 		variation.description = description;
 		variation.metadata = metadata;
@@ -111,7 +111,7 @@ public class CarvableHelper {
 		variations.add(variation);
 		map[metadata] = variation;
 	}
-	
+
 	public CarvableVariation getVariation(int metadata){
 		if (metadata < 0 || metadata > 15)
 			metadata = 0;
@@ -119,10 +119,10 @@ public class CarvableHelper {
 		CarvableVariation variation = map[metadata];
 		if (variation == null)
 			return null;
-		
+
 //		if(variation.kind!=CTMX)
 //			return null;
-		
+
 		return variation;
 	}
 
@@ -174,7 +174,7 @@ public class CarvableHelper {
 
 	public Icon getBlockTexture(IBlockAccess world, int x, int y, int z, int side) {
 		int metadata=world.getBlockMetadata(x, y, z);
-		
+
 		if (metadata < 0 || metadata > 15)
 			metadata = 0;
 
@@ -197,11 +197,11 @@ public class CarvableHelper {
 		case 4:
 			if(side<2)
 				return variation.iconTop;
-			
+
 			int blockId=world.getBlockId(x, y, z);
 			boolean topConnected= blockId==world.getBlockId(x, y+1, z) && metadata==world.getBlockMetadata(x, y+1, z);
 			boolean botConnected= blockId==world.getBlockId(x, y-1, z) && metadata==world.getBlockMetadata(x, y-1, z);
-			
+
 			if( topConnected &&  botConnected) return variation.seamsCtmVert.icons[2];
 			if( topConnected && !botConnected) return variation.seamsCtmVert.icons[3];
 			if(!topConnected &&  botConnected) return variation.seamsCtmVert.icons[1];
@@ -209,13 +209,13 @@ public class CarvableHelper {
 		case 5:
 			if(side<2)
 				return variation.iconTop;
-			
+
 			int id=world.getBlockId(x, y, z);
-			
+
 			boolean p;
 			boolean n;
 			boolean reverse=side==2||side==4;
-			
+
 			if(side<4){
 				p=isSame(world,x-1,y,z,id,metadata);
 				n=isSame(world,x+1,y,z,id,metadata);
@@ -223,7 +223,7 @@ public class CarvableHelper {
 				p=isSame(world,x,y,z+1,id,metadata);
 				n=isSame(world,x,y,z-1,id,metadata);
 			}
-			
+
 			if(p && n) return  variation.seamsCtmVert.icons[1];
 			else if(p) return  variation.seamsCtmVert.icons[reverse?2:3];
 			else if(n) return  variation.seamsCtmVert.icons[reverse?3:2];
@@ -232,7 +232,7 @@ public class CarvableHelper {
 		case V4:
 			int index=x+y*606731+z*571163+side*555491;
 			if(index<0) index=-index;
-			
+
 			return variation.variations9.icons[index%((variation.kind==V9)?9:4)];
 		case CTMX:
 			return variation.icon;
@@ -258,13 +258,13 @@ public class CarvableHelper {
 
 		for (CarvableVariation variation : variations) {
 			registerVariation(name, variation, block, variation.metadata);
-			
+
 			if (block instanceof BlockMarbleSlab && ((BlockMarbleSlab) block).isBottom) {
 				BlockMarbleSlab slab = (BlockMarbleSlab) block;
 				MinecraftForge.setBlockHarvestLevel(slab.top, variation.metadata, "chisel", 0);
-				
+
 				slab.top.setHardness(slab.blockHardness).setResistance(slab.blockResistance);
-				
+
 				if(! forbidChiseling){
 					Carving.chisel.addVariation(name + ".top", slab.top.blockID, variation.metadata, 0);
 					Carving.chisel.setGroupClass(name + ".top", name);
@@ -276,13 +276,13 @@ public class CarvableHelper {
 	}
 
 	public void registerVariation(String name, CarvableVariation variation, Block block, int blockMeta) {
-		
-		LanguageRegistry.addName(new ItemStack(block.blockID, 1, blockMeta), 
+
+		LanguageRegistry.addName(new ItemStack(block.blockID, 1, blockMeta),
 			Chisel.blockDescriptions?
 				variation.blockName:
 				variation.description
 		);
-		
+
 		if(forbidChiseling) return;
 
 		if (variation.block == null) {
@@ -386,5 +386,5 @@ public class CarvableHelper {
 	public void setBlockName(String name) {
 		blockName=name;
 	}
-	
+
 }

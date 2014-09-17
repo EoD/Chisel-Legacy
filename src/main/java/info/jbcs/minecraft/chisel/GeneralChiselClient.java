@@ -17,15 +17,15 @@ import net.minecraft.world.World;
 public class GeneralChiselClient {
 	public static Random rand = new Random();
 	public static int tick=0;
-	
+
 	public static void spawnLavastoneFX(World world, BlockLavastone block, int x, int y, int z) {
 		if(Chisel.particlesTickrate!=0 && tick++%Chisel.particlesTickrate!=0) return;
-	
+
 		float f = 0.15F;
 		double x1 = x + rand.nextDouble() * (block.getBlockBoundsMaxX() - block.getBlockBoundsMinX() - f * 2.0F) + f + block.getBlockBoundsMinX();
 		double y1 = y + rand.nextDouble() * (block.getBlockBoundsMaxY() - block.getBlockBoundsMinY() - f * 2.0F) + f + block.getBlockBoundsMinY();
 		double z1 = z + rand.nextDouble() * (block.getBlockBoundsMaxZ() - block.getBlockBoundsMinZ() - f * 2.0F) + f + block.getBlockBoundsMinZ();
-		
+
 		switch(rand.nextInt(6)){
 		case 0:
 			y1 = y + block.getBlockBoundsMinY() - f;
@@ -52,9 +52,9 @@ public class GeneralChiselClient {
 			x++;
 			break;
 		}
-		
+
 		if(world.isBlockOpaqueCube(x, y, z)) return;
-		
+
 		EntityLavaFX res = new EntityLavaFX(world, x1, y1, z1);
 //		res.motionX=x1-x-0.5;
 //		res.motionY=y1-y-0.5;
@@ -63,18 +63,18 @@ public class GeneralChiselClient {
 		res.motionX=-multiplier*(x1-x-0.5);
 		res.motionY=multiplier*(y1-y-0.5);
 		res.motionZ=-multiplier*(z1-z-0.5);
-		
+
 		Minecraft.getMinecraft().effectRenderer.addEffect(res);
 	}
-	
+
 	public static void spawnHolystoneFX(World world, BlockHolystone block, int x, int y, int z) {
 		if(Chisel.particlesTickrate!=0 && tick++%Chisel.particlesTickrate!=0) return;
-		
+
 		float f = 0.15F;
 		double x1 = x + rand.nextDouble() * (block.getBlockBoundsMaxX() - block.getBlockBoundsMinX() - f * 2.0F) + f + block.getBlockBoundsMinX();
 		double y1 = y + rand.nextDouble() * (block.getBlockBoundsMaxY() - block.getBlockBoundsMinY() - f * 2.0F) + f + block.getBlockBoundsMinY();
 		double z1 = z + rand.nextDouble() * (block.getBlockBoundsMaxZ() - block.getBlockBoundsMinZ() - f * 2.0F) + f + block.getBlockBoundsMinZ();
-		
+
 		switch(rand.nextInt(6)){
 		case 0:
 			y1 = y + block.getBlockBoundsMinY() - f;
@@ -101,9 +101,9 @@ public class GeneralChiselClient {
 			x++;
 			break;
 		}
-		
+
 		if(world.isBlockOpaqueCube(x, y, z)) return;
-		
+
 		EntityHolystoneFX res = new EntityHolystoneFX(world, block, x1, y1, z1);
 		Minecraft.getMinecraft().effectRenderer.addEffect(res);
 	}
@@ -114,7 +114,7 @@ public class GeneralChiselClient {
 			Minecraft.getMinecraft().effectRenderer.addEffect(res);
 		}
 	}
-	
+
 	public static void spawnBallOMossFX(World world, double x, double y, double z) {
 		if(Chisel.particlesTickrate==0 || tick++%Chisel.particlesTickrate==0){
 			EntityBallOMossFX res = new EntityBallOMossFX(world, x, y, z);
@@ -122,7 +122,7 @@ public class GeneralChiselClient {
 		}
 	}
 
-		
+
 	public static EntityDiggingFX addBlockHitEffects(World world, int x, int y, int z, int side) {
 		int i1 = world.getBlockId(x, y, z);
 		if (i1 == 0)
@@ -174,7 +174,7 @@ public class GeneralChiselClient {
 			for (int j = 0; j < 16; j++) {
 				EntityDiggingFX fx = addBlockHitEffects(Minecraft.getMinecraft().theWorld, x, y, z, side);
 				if(fx==null) return;
-				
+
 				fx.multipleParticleScaleBy(0.25f + 0.5f * rand.nextFloat());
 				fx.multiplyVelocity(0.3f * rand.nextFloat());
 			}
@@ -182,20 +182,20 @@ public class GeneralChiselClient {
 
 		GeneralClient.playChiselSound(world, x, y, z, sound);
 	}
-	
+
 	public static void speedupPlayer(World world, Entity entity, double concreteVelocity) {
 		double velocity=Math.sqrt(entity.motionX*entity.motionX+entity.motionZ*entity.motionZ);
-		
+
 		if(! (entity instanceof EntityPlayerSP)) return;
 		if(velocity==0) return;
 		if(velocity>=Chisel.concreteVelocity) return;
-		
+
 		EntityPlayerSP player=(EntityPlayerSP) entity;
-			
+
 		if(Math.abs(player.movementInput.moveForward) < 0.75f && Math.abs(player.movementInput.moveStrafe) < 0.75f) return;
 
 		entity.motionX = Chisel.concreteVelocity * entity.motionX / velocity;
-		entity.motionZ = Chisel.concreteVelocity * entity.motionZ / velocity;	
+		entity.motionZ = Chisel.concreteVelocity * entity.motionZ / velocity;
 	}
 
 }

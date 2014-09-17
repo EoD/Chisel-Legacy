@@ -11,14 +11,14 @@ public class ItemMarbleSlab extends ItemCarvable {
 	public ItemMarbleSlab(int id) {
 		super(id);
 	}
-	
+
     /**
      * Returns true if the given ItemBlock can be placed on the given side of the given block position.
      */
     @Override
 	public boolean canPlaceItemBlockOnSide(World world, int x, int y, int z, int side, EntityPlayer player, ItemStack stack){
 		BlockMarbleSlab block=(BlockMarbleSlab)Block.blocksList[blockId];
-		
+
 		switch(side){
 		case 0: --y; break;
 		case 1: ++y; break;
@@ -27,7 +27,7 @@ public class ItemMarbleSlab extends ItemCarvable {
 		case 4: --x; break;
 		case 5: ++x; break;
 		}
-		
+
         int id = world.getBlockId(x, y, z);
     	int meta=world.getBlockMetadata(x, y, z);
 
@@ -37,11 +37,11 @@ public class ItemMarbleSlab extends ItemCarvable {
         return world.canPlaceEntityOnSide(getBlockID(), x, y, z, false, side, (Entity)null, stack);
     }
 
-	
+
     @Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hx, float hy, float hz){
 		BlockMarbleSlab block=(BlockMarbleSlab)Block.blocksList[blockId];
-   	
+
     	int id=world.getBlockId(x, y, z);
     	int meta=world.getBlockMetadata(x, y, z);
     	boolean metaMatches=meta==stack.getItemDamage();
@@ -53,10 +53,10 @@ public class ItemMarbleSlab extends ItemCarvable {
     		world.setBlock(x, y, z, block.master.blockID, meta, 2);
     		return true;
     	}
-    	
+
 		boolean result=super.onItemUse(stack,player,world,x,y,z,side,hz,hy,hz);
-		
-		
+
+
 		switch(side){
 		case 0: --y; break;
 		case 1: ++y; break;
@@ -65,7 +65,7 @@ public class ItemMarbleSlab extends ItemCarvable {
 		case 4: --x; break;
 		case 5: ++x; break;
 		}
-		
+
     	id=world.getBlockId(x, y, z);
     	meta=world.getBlockMetadata(x, y, z);
 
@@ -73,13 +73,13 @@ public class ItemMarbleSlab extends ItemCarvable {
     		world.setBlock(x, y, z, block.master.blockID, meta, 2);
     		return true;
     	}
-    	
+
     	if(!result)
     		return false;
-    	
+
 		if(side != 0 && (side == 1 || hy <= 0.5D))
 			return true;
-		
+
 		world.setBlock(x, y, z, block.top.blockID, meta, 2);
     	return true;
     }

@@ -33,13 +33,13 @@ public class ProxyClient extends Proxy {
 
 				addSound("chisel:squash.ogg");
 				addSound("chisel:squash2.ogg");
-				
+
 				addSound("chisel:temple-footstep1.ogg");
 				addSound("chisel:temple-footstep2.ogg");
 				addSound("chisel:temple-footstep3.ogg");
 				addSound("chisel:temple-footstep4.ogg");
 				addSound("chisel:temple-footstep5.ogg");
-				
+
 				addSound("chisel:metal1.ogg");
 				addSound("chisel:metal2.ogg");
 				addSound("chisel:metal3.ogg");
@@ -65,14 +65,14 @@ public class ProxyClient extends Proxy {
 		RenderingRegistry.registerBlockHandler(new BlockEldritchRenderer());
 		RenderingRegistry.registerBlockHandler(new BlockAdvancedMarbleRenderer());
 		RenderingRegistry.registerBlockHandler(new BlockCarpetRenderer());
-		
-		
+
+
 		RenderingRegistry.registerBlockHandler(new BlockTexturedOreRenderer());
 
 		RenderingRegistry.registerEntityRenderingHandler(EntityCloudInABottle.class, new RenderSnowball(Chisel.itemCloudInABottle));
 		RenderingRegistry.registerEntityRenderingHandler(EntityBallOMoss.class, new RenderSnowball(Chisel.itemBallOMoss));
-		
-		
+
+
 		MinecraftForgeClient.registerItemRenderer(Chisel.chisel.itemID, renderer);
 //		MinecraftForgeClient.registerItemRenderer(Chisel.needle.itemID, renderer);
 

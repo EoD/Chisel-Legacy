@@ -12,7 +12,7 @@ public class CarvingVariation implements Comparable {
 	public int compareTo(Object a) {
 		return order-((CarvingVariation)a).order;
 	}
-	
+
 	public int order;
 	public int blockId;
 	public int meta;

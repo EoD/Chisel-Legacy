@@ -17,7 +17,7 @@ public class BlockMarbleCarpet extends BlockCarpet implements Carvable {
 
 		carverHelper = new CarvableHelper();
 
-		setCreativeTab(Chisel.tabChisel);		
+		setCreativeTab(Chisel.tabChisel);
 	}
 
 
@@ -45,7 +45,7 @@ public class BlockMarbleCarpet extends BlockCarpet implements Carvable {
 	public void getSubBlocks(int blockId, CreativeTabs tabs, List list){
 		carverHelper.registerSubBlocks(this,tabs,list);
     }
-	
+
 	@Override
 	public int getRenderType() {
 		return Chisel.RenderCarpetId;

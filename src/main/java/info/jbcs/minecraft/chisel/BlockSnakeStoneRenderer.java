@@ -32,8 +32,8 @@ public class BlockSnakeStoneRenderer implements ISimpleBlockRenderingHandler {
 
 		setRenderRotate(renderer, (BlockSnakestone) block, meta);
 		boolean didRender = renderer.renderStandardBlock(block, x, y, z);
-		restoreRendererRotate(renderer);		
-		
+		restoreRendererRotate(renderer);
+
 		return didRender;
 	}
 
@@ -50,8 +50,8 @@ public class BlockSnakeStoneRenderer implements ISimpleBlockRenderingHandler {
 		int type = meta & 0xC;
 		int orient = meta & 0x3;
 
-		
-		
+
+
 		if (type == 0) {
 			switch (orient) {
 			case 0:

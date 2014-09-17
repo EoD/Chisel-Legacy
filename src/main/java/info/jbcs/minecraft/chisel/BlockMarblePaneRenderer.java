@@ -169,7 +169,7 @@ public class BlockMarblePaneRenderer implements ISimpleBlockRenderingHandler {
 			tessellator.addVertexWithUV(x0 + xoff0, y0 + y, zp0, i1u0, i1v0 + i1v * v0);
 			tessellator.addVertexWithUV(x0 + xoff1, y0 + y, zp0, i1u0, i1v0 + i1v * v1);
 		}
-		
+
 
 		public void renderHorizontalNS(double zoff, double v0, double v1) {
 			tessellator.addVertexWithUV(xp0, y1, z0+zoff, i2u0, i2v0 + i2v * v1);
@@ -180,9 +180,9 @@ public class BlockMarblePaneRenderer implements ISimpleBlockRenderingHandler {
 			tessellator.addVertexWithUV(xp1, y0, z0+zoff, i2u1, i2v0 + i2v * v0);
 			tessellator.addVertexWithUV(xp0, y0, z0+zoff, i2u0, i2v0 + i2v * v0);
 			tessellator.addVertexWithUV(xp0, y1, z0+zoff, i2u0, i2v0 + i2v * v1);
-			
+
 		}
-		
+
 		public void renderHorizontalWE(double xoff,double v0,double v1){
 			tessellator.addVertexWithUV(x0 + xoff, y1, zp0, i2u0, i2v0 + i2v * v1);
 			tessellator.addVertexWithUV(x0 + xoff, y0, zp0, i2u0, i2v0 + i2v * v0);
@@ -235,25 +235,25 @@ public class BlockMarblePaneRenderer implements ISimpleBlockRenderingHandler {
 		boolean connectsEast = block.canThisPaneConnectToThisBlockID(world.getBlockId(x + 1, y, z));
 		boolean connectsTop = block.canThisPaneConnectToThisBlockID(world.getBlockId(x, y + 1, z));
 		boolean connectsBottom = block.canThisPaneConnectToThisBlockID(world.getBlockId(x, y - 1, z));
-		
+
 		boolean connectsTopNorth=block.canThisPaneConnectToThisBlockID(world.getBlockId(x, y + 1, z - 1));
 		boolean connectsTopSouth=block.canThisPaneConnectToThisBlockID(world.getBlockId(x, y + 1, z + 1));
 		boolean connectsTopWest=block.canThisPaneConnectToThisBlockID(world.getBlockId(x-1, y + 1, z));
 		boolean connectsTopEast=block.canThisPaneConnectToThisBlockID(world.getBlockId(x+1, y + 1, z));
-		
+
 		boolean connectsBottomNorth=block.canThisPaneConnectToThisBlockID(world.getBlockId(x, y - 1, z - 1));
 		boolean connectsBottomSouth=block.canThisPaneConnectToThisBlockID(world.getBlockId(x, y - 1, z + 1));
 		boolean connectsBottomWest=block.canThisPaneConnectToThisBlockID(world.getBlockId(x-1, y - 1, z));
 		boolean connectsBottomEast=block.canThisPaneConnectToThisBlockID(world.getBlockId(x+1, y - 1, z));
-		
+
 		boolean isolatedTop=!connectsTopNorth && !connectsTopSouth && !connectsTopWest && !connectsTopEast;
 		boolean isolatedBottom=!connectsBottomNorth && !connectsBottomSouth && !connectsBottomWest && !connectsBottomEast;
-		
+
 		if (!connectsNorth && !connectsSouth && !connectsWest && !connectsEast) {
 			connectsNorth = connectsSouth = connectsWest = connectsEast = true;
 		}
 
-		int connections=0;		
+		int connections=0;
 		if (connectsNorth) {
 			paneRenderer.renderNorthPane();
 			if(!connectsBottom || !connectsBottomNorth && !isolatedBottom) paneRenderer.renderVerticalNS(-0.0003, 0.0, 0.5, 0.5, 0.0);
@@ -278,8 +278,8 @@ public class BlockMarblePaneRenderer implements ISimpleBlockRenderingHandler {
 			if(!connectsTop || !connectsTopEast && !isolatedTop) paneRenderer.renderVerticalWE(+1.0002, 0.5, 1.0, 1.0, 0.5);
 			connections++;
 		}
-		
-		
+
+
 		if(connections==1){
 			if(connectsNorth) paneRenderer.renderHorizontalNS(0.5,1.0,0.0);
 			if(connectsSouth) paneRenderer.renderHorizontalNS(0.5,0.0,1.0);

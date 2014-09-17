@@ -55,10 +55,10 @@ public class BlockMarbleIce extends BlockIce implements Carvable  {
 			super.harvestBlock(par1World, par2EntityPlayer, par3, par4, par5, par6);
 			return;
 		}
-		
+
         par2EntityPlayer.addStat(StatList.mineBlockStatArray[this.blockID], 1);
         par2EntityPlayer.addExhaustion(0.025F);
-        
+
         if(par1World.isRemote)
         	return;
 

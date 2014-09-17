@@ -12,7 +12,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 
 public class BlockRoadLineRenderer implements ISimpleBlockRenderingHandler {
 	static int id;
-	
+
 	public BlockRoadLineRenderer() {
 		id = RenderingRegistry.getNextAvailableRenderId();
 	}
@@ -25,7 +25,7 @@ public class BlockRoadLineRenderer implements ISimpleBlockRenderingHandler {
 
 	public void renderTopFace(double y,Icon icon) {
 		Tessellator tessellator=Tessellator.instance;
-		
+
 		tessellator.addVertexWithUV(1, y, 0, icon.getMaxU(), icon.getMinV());
 		tessellator.addVertexWithUV(0, y, 0, icon.getMinU(), icon.getMinV());
 		tessellator.addVertexWithUV(0, y, 1, icon.getMinU(), icon.getMaxV());
@@ -37,7 +37,7 @@ public class BlockRoadLineRenderer implements ISimpleBlockRenderingHandler {
 		int meta=world.getBlockMetadata(x, y, z);
 		BlockRoadLine block=(BlockRoadLine) b;
 		Tessellator tessellator=Tessellator.instance;
-		
+
 		tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
 
 		float f = 1.0F;
@@ -60,17 +60,17 @@ public class BlockRoadLineRenderer implements ISimpleBlockRenderingHandler {
 		boolean S=world.getBlockId(x, y, z+1)==block.blockID;
 		boolean W=world.getBlockId(x-1, y, z)==block.blockID;
 		boolean E=world.getBlockId(x+1, y, z)==block.blockID;
-		
+
         if(!N && !S && !W && !E){
 			renderer.renderStandardBlock(block, x, y, z);
 			return true;
 		}
-		
+
 		if(N && S){
 			renderer.uvRotateTop=0;
 			renderer.overrideBlockTexture=block.fullLineIcon;
 			renderer.renderStandardBlock(block, x, y, z);
-			
+
 		} else{
 			if(N){
 				renderer.uvRotateTop=0;
@@ -82,7 +82,7 @@ public class BlockRoadLineRenderer implements ISimpleBlockRenderingHandler {
 				renderer.overrideBlockTexture=block.halfLineIcon;
 				renderer.renderStandardBlock(block, x, y, z);
 			}
-			
+
 		}
 
 		if(E && W){

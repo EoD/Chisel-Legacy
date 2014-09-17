@@ -22,7 +22,7 @@ public class Packets {
 			final int x=stream.readInt();
 			final int y=stream.readInt();
 			final int z=stream.readInt();
-			
+
 			switch(FMLCommonHandler.instance().getEffectiveSide()){
 			case SERVER:
 				ServerConfigurationManager mgr = MinecraftServer.getServer().getConfigurationManager();
@@ -42,7 +42,7 @@ public class Packets {
 						}
 					});
 				}
-				
+
 				break;
 			case CLIENT:
 				int blockId=player.worldObj.getBlockId(x,y,z);

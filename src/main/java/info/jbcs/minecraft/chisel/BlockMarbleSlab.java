@@ -21,27 +21,27 @@ public class BlockMarbleSlab extends BlockMarble {
 
 	public BlockMarbleSlab(String name,int bottomId,int topId, Block m) {
 		super(name+".bottom",bottomId);
-		
+
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
         opaqueCubeLookup[blockID] = true;
 
 		master = m;
 		bottom = this;
 		top = new BlockMarbleSlab(name,this,topId);
-		
+
 		isBottom=true;
 	}
 
 	public BlockMarbleSlab(String name,BlockMarbleSlab bottomBlock,int topId) {
 		super(name+".top",topId);
-		
+
 		setBlockBounds(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
         opaqueCubeLookup[blockID] = true;
 
 		master = bottomBlock.master;
 		bottom = bottomBlock;
 		top = this;
-		
+
 		carverHelper=bottomBlock.carverHelper;
 		isBottom=false;
 	}
@@ -91,7 +91,7 @@ public class BlockMarbleSlab extends BlockMarble {
 	public int idPicked(World par1World, int par2, int par3, int par4) {
 		return bottom.blockID;
 	}
-	
+
 	@Override
 	public Icon getIcon(int side, int metadata) {
 		return carverHelper.getIcon(side, metadata);
@@ -102,5 +102,5 @@ public class BlockMarbleSlab extends BlockMarble {
 	public void getSubBlocks(int blockId, CreativeTabs tabs, List list){
 		if(isBottom) super.getSubBlocks(blockId,tabs,list);
     }
-	
+
 }
