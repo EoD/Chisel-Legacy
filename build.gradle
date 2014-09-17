@@ -19,6 +19,9 @@ archivesBaseName = "Chisel"
 
 minecraft {
 	version = "1.6.4-9.11.1.964"
+
+	replaceIn "Chisel.java"
+	replace "MOD_VERSION", project.version
 }
 
 processResources
