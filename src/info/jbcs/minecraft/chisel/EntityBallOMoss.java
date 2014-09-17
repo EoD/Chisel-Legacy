@@ -1,6 +1,7 @@
 package info.jbcs.minecraft.chisel;
 
 import info.jbcs.minecraft.utilities.General;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.MovingObjectPosition;
@@ -68,13 +69,33 @@ public class EntityBallOMoss extends EntityThrowable  {
  	 	 			
  	 	 			if(! (dist<falloff || General.rand.nextInt(radius*3-falloff)>=dist*2)) continue;
  	 	 			
- 	 	 			if (worldObj.isRemote)
- 	 	 				GeneralChiselClient.turnToMoss(worldObj, x+xx, y+yy, z+zz);
+ 	 	 			if (! worldObj.isRemote)
+ 	 	 				turnToMoss(worldObj, x+xx, y+yy, z+zz);
  	 	 		}
  	 		}
  		}
 
 	}
 
-
+	
+	public static void turnToMoss(World world, int x, int y, int z) {
+		int id=world.getBlockId(x, y, z);
+		int meta=world.getBlockMetadata(x, y, z);
+		int resId=id;
+		int resMeta=meta;
+		
+		if(id==Block.cobblestone.blockID){
+			resId=Block.cobblestoneMossy.blockID;
+		} else if(id==Block.cobblestoneWall.blockID && meta==0){
+			resMeta=1;
+		} else if(id==Chisel.blockCobblestone.blockID){
+			resId=Chisel.blockCobblestoneMossy.blockID;
+		} else if(id==Chisel.blockTemple.blockID){
+			resId=Chisel.blockTempleMossy.blockID;
+		}
+		
+		if(resId==id && resMeta==meta) return;
+		world.setBlock(x, y, z, resId, resMeta, 3);
+	}
+	
 }

@@ -121,27 +121,7 @@ public class GeneralChiselClient {
 			Minecraft.getMinecraft().effectRenderer.addEffect(res);
 		}
 	}
-	
-	public static void turnToMoss(World world, int x, int y, int z) {
-		int id=world.getBlockId(x, y, z);
-		int meta=world.getBlockMetadata(x, y, z);
-		int resId=id;
-		int resMeta=meta;
-		
-		if(id==Block.cobblestone.blockID){
-			resId=Block.cobblestoneMossy.blockID;
-		} else if(id==Block.cobblestoneWall.blockID && meta==0){
-			resMeta=1;
-		} else if(id==Chisel.blockCobblestone.blockID){
-			resId=Chisel.blockCobblestoneMossy.blockID;
-		} else if(id==Chisel.blockTemple.blockID){
-			resId=Chisel.blockTempleMossy.blockID;
-		}
-		
-		if(resId==id && resMeta==meta) return;
-		world.setBlock(x, y, z, resId, resMeta, 3);
-	}
-	
+
 		
 	public static EntityDiggingFX addBlockHitEffects(World world, int x, int y, int z, int side) {
 		int i1 = world.getBlockId(x, y, z);
@@ -193,7 +173,8 @@ public class GeneralChiselClient {
 		for (int side = 0; side < 6; side++) {
 			for (int j = 0; j < 16; j++) {
 				EntityDiggingFX fx = addBlockHitEffects(Minecraft.getMinecraft().theWorld, x, y, z, side);
-
+				if(fx==null) return;
+				
 				fx.multipleParticleScaleBy(0.25f + 0.5f * rand.nextFloat());
 				fx.multiplyVelocity(0.3f * rand.nextFloat());
 			}

@@ -7,15 +7,10 @@ import java.io.File;
 import java.util.ArrayList;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDispenser;
 import net.minecraft.block.StepSound;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.dispenser.BehaviorProjectileDispense;
-import net.minecraft.dispenser.IPosition;
-import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
@@ -23,8 +18,6 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.world.World;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.ForgeSubscribe;
-import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -1201,19 +1194,6 @@ public class Chisel {
         MinecraftForge.EVENT_BUS.register(this);
 	}
 	
-	@ForgeSubscribe
-	public void onWorldEvent(WorldEvent evt){
-		BlockDispenser.dispenseBehaviorRegistry.putObject(Item.egg,new BehaviorProjectileDispense(){
-		    @Override
-			protected IProjectile getProjectileEntity(World par1World, IPosition par2IPosition)
-		    {
-		        EntityArrow entityarrow = new EntityArrow(par1World, par2IPosition.getX(), par2IPosition.getY(), par2IPosition.getZ());
-		        entityarrow.canBePickedUp = 1;
-		        return entityarrow;
-		    }
-		});
-	}
-
 	@PostInit
 	public void postInit(FMLPostInitializationEvent event) {
 		new ChiselModCompatibility().postInit(event);
