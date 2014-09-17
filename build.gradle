@@ -5,6 +5,9 @@ buildscript {
             name = "forge"
             url = "http://files.minecraftforge.net/maven"
         }
+	flatDir {
+	    dir 'libs'
+	}
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:1.0-SNAPSHOT'
