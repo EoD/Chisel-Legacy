@@ -20,10 +20,8 @@ import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PostInit;
-import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -141,7 +139,7 @@ public class Chisel {
 		}
     }
 
-	@PreInit
+	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		File configFile=event.getSuggestedConfigurationFile();
 		configExists=configFile.exists();
@@ -172,7 +170,7 @@ public class Chisel {
 	}
 
 
-	@Init
+	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		chisel = (ItemChisel) new ItemChisel(config.getItem("chisel",7811).getInt(),Carving.chisel).setTextureName("chisel:chisel").setUnlocalizedName("chisel").setCreativeTab(CreativeTabs.tabTools);
 		LanguageRegistry.addName(chisel, "Chisel");
@@ -1194,7 +1192,7 @@ public class Chisel {
         MinecraftForge.EVENT_BUS.register(this);
 	}
 
-	@PostInit
+	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		new ChiselModCompatibility().postInit(event);
 	}
