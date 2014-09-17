@@ -42,3 +42,9 @@ processResources
         exclude 'mcmod.info'
     }
 }
+
+task devbuild(type: Jar) {
+  from sourceSets.main.output
+  appendix = project.minecraft.version
+  classifier = 'dev'
+}
