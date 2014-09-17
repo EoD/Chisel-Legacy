@@ -50,15 +50,14 @@ public class InventoryChiselSelection extends InventoryStatic {
 	public void updateItems() {
 		ItemStack chiseledItem = items[normalSlots];
 
+
 		clearItems();
 
-		if (chiseledItem == null || chiseledItem.itemID<0 || chiseledItem.itemID>=Item.itemsList.length){
+		if (chiseledItem == null || chiseledItem.itemID<0 || chiseledItem.itemID>=Item.itemsList.length
+				|| chiseledItem.itemID >= Block.blocksList.length ) {
 			container.onChiselSlotChanged();
 			return;
 		}
-
-		if(chiseledItem.itemID>=Block.blocksList.length)
-			return;
 
 		Item item=General.getItem(chiseledItem);
 		if(item == null) return;
