@@ -11,6 +11,12 @@ This repository is a fork of the original mod by AUTOMATIC_MAIDEN:
 Compiling
 ---------
 
+Before you start compiling you have to download the developer version of autoutils from 
+  https://github.com/EoD/autoutils/releases
+
+Copy the autotuils-1.6.4-x.x.x-dev.jar to the `libs/` folder.
+
+
 In order to compile the mod, you should use gradle as described at:
   http://www.minecraftforge.net/wiki/Installation/Source#Installation
 
@@ -25,5 +31,5 @@ the folder where this source is located and start coding. Once you are done, cre
 jar file by using the command:
 
 ```
-  ./gradlew reobf
+  ./gradlew build
 ```
